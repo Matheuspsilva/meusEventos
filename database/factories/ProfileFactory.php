@@ -23,7 +23,7 @@ class ProfileFactory extends Factory
     {
         return [
             'about' =>$this->faker->paragraph,
-            'phone' => $this->faker->phoneNumber,
+            'phone' => $this->faker->numerify('(##) #####-####'),
             'social_networks' => 'fb, twitter, instagram',
 
         ];
