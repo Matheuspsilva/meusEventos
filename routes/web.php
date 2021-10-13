@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
@@ -15,18 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/queries/{id}', function ($id) {
-//     $event = \App\Models\Event::find($id);
-//     return $id;
-// });
-
-Route::get('/hello-world', [\App\Http\Controllers\HelloWorldController::class, 'helloWorld']);
-
-Route::get('/hello/{name?}', [\App\Http\Controllers\HelloWorldController::class, 'hello']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('eventos/{slug}', [HomeController::class, 'show']);
 
 Route::resource('/events', EventController::class);
 
