@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 
 
 
@@ -29,7 +31,7 @@ class EventController extends Controller
      */
     public function create()
     {
-
+        return view('admin.events.create');
 
     }
 
@@ -41,16 +43,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //Atribuição Massa ou Mass Assignment
-        // $event = [
-        //     'title' => 'Evento Atribuição em Massa' , rand(1,100),
-        //     'description' => 'Descrição...',
-        //     'body' => 'Conteúdo do evento',
-        //     'slug' => 'evento-atribuicao-em-massa',
-        //     'start_event' => date('Y-m-d H:i:s'),
-        // ];
 
-        // return Event::create($event);
+        $event = $request->all();
+        $event['slug'] = Str::slug($event['title']);
+
+        Event::create($event);
+
+        return redirect()->to(route('events.index'));
     }
 
     /**
