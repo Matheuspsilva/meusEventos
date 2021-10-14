@@ -69,9 +69,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($event)
     {
-        //
+        $event = Event::findOrFail($event);
+
+        return view('admin.events.edit')->with('event', $event);
     }
 
     /**
@@ -81,20 +83,13 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $event)
     {
-        //  // Mass Update ou Atualização em Massa
-        // $eventData = [
-        //     'title' => 'dasdasdasdasdasdadasasdasd' . rand(1,100)
-        //     // 'description' => 'Descrição atualizada...',
-        //     // 'body' => 'Conteúdo do evento atualizado com atualização em massa',
-        //     // 'slug' => 'evento-atribuicao-em-massa',
-        //     // 'start_event' => date('Y-m-d H:i:s'),
-        // ];
 
-        // $event = \App\Models\Event::find($id);
-        // $event->update($eventData);
-        // return $event;
+        $event = \App\Models\Event::findOrFail($event);
+        $event->update($request->all());
+
+        return redirect()->back();
     }
 
     /**
@@ -103,9 +98,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($event)
     {
-        $event = \App\Models\Event::findOrFail($id);
-        return $event->delete();
+        $event = \App\Models\Event::findOrFail($event);
+        $event->delete();
+
+        return redirect()->to(route('events.index'));
     }
 }
