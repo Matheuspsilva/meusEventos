@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 
 class EventController extends Controller
@@ -15,7 +17,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        $events = Event::paginate(10);
+
+        return view('admin.events.index')->with('events', $events) ;
     }
 
     /**

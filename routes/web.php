@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\Admin\EventController;
+
 use App\Http\Controllers\HomeController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('eventos/{slug}', [HomeController::class, 'show']);
 
-Route::resource('/events', EventController::class);
+Route::prefix('admin')->group(function () {
+    Route::resource('/events', EventController::class);
+});
+
 
