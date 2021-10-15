@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-12">
 
-        <form action="{{ route('events.update', $event)}}" method="post" >
+        <form action="{{ route('admin.events.update', $event)}}" method="post" >
             @csrf
             @method('PUT')
 

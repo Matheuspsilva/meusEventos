@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-12">
 
-        <form action="{{ route('events.store')}}" method="post">
+        <form action="{{ route('admin.events.store')}}" method="post">
 
             @csrf
 

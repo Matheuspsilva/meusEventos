@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-12 d-flex justify-content-between align-items-center my-5">
         <h2>Meus Eventos</h2>
-        <a href="{{ route('events.create') }}" class="btn btn-success">Criar Evento</a>
+        <a href="{{ route('admin.events.create') }}" class="btn btn-success">Criar Evento</a>
     </div>
     <div class="col-12">
         <table class="table table-striped">
@@ -32,8 +32,8 @@
                     <td>
                         <div class="col-12 d-flex">
 
-                            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('events.destroy', $event->id)}}" method="post">
+                            <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('admin.events.destroy', $event->id)}}" method="post">
                                 @csrf
                                 @method("DELETE")
 

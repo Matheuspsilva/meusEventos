@@ -49,7 +49,7 @@ class EventController extends Controller
 
         Event::create($event);
 
-        return redirect()->to(route('events.index'));
+        return redirect()->to(route('admin.events.index'));
     }
 
     /**
@@ -103,6 +103,6 @@ class EventController extends Controller
         $event = \App\Models\Event::findOrFail($event);
         $event->delete();
 
-        return redirect()->to(route('events.index'));
+        return redirect()->to(route('admin.events.index'));
     }
 }
