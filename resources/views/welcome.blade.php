@@ -28,7 +28,7 @@
 
                         <p class="card-text">{{$event->description}}</p>
 
-                        <a href="/eventos/{{$event->slug}}" class="btn btn-default">Ver evento</a>
+                        <a href="{{ route('events.single', ['slug' => $event->slug] )}}" class="btn btn-default">Ver evento</a>
 
                     </div>
 
