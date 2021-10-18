@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventRequest;
 use Illuminate\Support\Str;
 
 
@@ -38,19 +39,11 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EventRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:5',
-            'description' => 'required',
-            'body' => 'required',
-            'start_event' => 'required',
-
-        ]);
-
         $event = $request->all();
         $event['slug'] = Str::slug($event['title']);
 
