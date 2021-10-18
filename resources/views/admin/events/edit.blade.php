@@ -1,50 +1,78 @@
 @extends('layouts.app')
 
-@section('title')Editar Evento - @endsection
+
+@section('title') Editar Evento -  @endsection
 
 @section('content')
-
-<div class="row">
-    <div class="col-12 d-flex justify-content-between align-items-center my-5">
-        <h2>Editar Evento</h2>
+    <div class="row">
+        <div class="col-12 my-5">
+            <h2>Editar Evento</h2>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-12">
+    <div class="row">
+        <div class="col-12">
 
-        <form action="{{ route('admin.events.update', $event)}}" method="post" >
-            @csrf
-            @method('PUT')
+            <form action="{{route('admin.events.update', ['event' => $event->id])}}" method="post">
+                @method('PUT')
+                @csrf
 
-            <div class="form-group">
-                <label for="">Título Evento</label>
-                <input type="text" class="form-control" name="title" value="{{$event->title}}">
-            </div>
+                <div class="form-group">
 
-            <div class="form-group">
-                <label for="">Descrição Evento</label>
-                <input type="text" class="form-control" name="description" value="{{$event->description}}">
+                    <label>Título Evento</label>
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$event->title}}">
 
-            </div>
+                    @error('title')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
 
-            <div class="form-group">
-                <label for="">Fale mais Sobre o evento</label>
-                <textarea name="body" id="" cols="30" rows="10" class="form-control">{{$event->body}}</textarea>
+                </div>
 
-            </div>
+                <div class="form-group">
 
-            <div class="form-group">
-                <label for="">Quando acontecerá</label>
-                <input type="text" class="form-control" name="start_event" value="{{$event->start_event}}">
-            </div>
+                    <label>Descrição Rápida Evento</label>
+                    <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{$event->description}}">
 
-            <button type="submit" class="btn btn-lg btn-success">Atualizar Evento</button>
+                    @error('description')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
 
-        </form>
+                </div>
 
+                <div class="form-group">
+
+                    <label>Fale mais Sobre o Evento</label>
+                    <textarea name="body" id="" cols="30" rows="10" class="form-control @error('body') is-invalid @enderror">{{$event->body}}</textarea>
+
+                    @error('body')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Quando Vai Acontecer?</label>
+                    <input type="text" class="form-control @error('start_event') is-invalid @enderror" name="start_event" value="{{$event->start_event}}">
+
+                    @error('start_event')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
+
+                </div>
+
+                <button type="submit" class="btn btn-lg btn-success">Atualizar Evento</button>
+
+            </form>
+
+        </div>
     </div>
-</div>
-
-
 @endsection
