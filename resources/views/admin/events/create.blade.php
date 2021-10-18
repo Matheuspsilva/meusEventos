@@ -10,7 +10,7 @@
     </div>
 </div>
 
-@if ($errors->any())
+{{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -18,7 +18,9 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
+
+
 
 <div class="row">
     <div class="col-12">
@@ -29,24 +31,49 @@
 
             <div class="form-group">
                 <label for="">Título Evento</label>
-                <input type="text" class="form-control" name="title">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
+
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+
             </div>
 
             <div class="form-group">
                 <label for="">Descrição Evento</label>
-                <input type="text" class="form-control" name="description">
+                <input type="text" class="form-control @error('description') is-invalid @enderror" name="description">
+
+                @error('description')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
 
             </div>
 
             <div class="form-group">
                 <label for="">Fale mais Sobre o evento</label>
-                <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="body" id="" cols="30" rows="10" class="form-control @error('body') is-invalid @enderror"></textarea>
+
+                @error('body')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
 
             </div>
 
             <div class="form-group">
                 <label for="">Quando acontecerá</label>
-                <input type="text" class="form-control" name="start_event">
+                <input type="text" class="form-control @error('start_event') is-invalid @enderror" name="start_event">
+
+                @error('start_event')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-lg btn-success">Criar Evento</button>
