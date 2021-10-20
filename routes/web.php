@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
-
+use App\Http\Controllers\Admin\EventPhotoController;
 use App\Http\Controllers\HomeController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +22,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('eventos/{slug}', [HomeController::class, 'show'])->name('events.single');
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('/events', EventController::class);
+    Route::resource('events', EventController::class);
+    Route::resource('events.photos', EventPhotoController::class);
+
 });
 
 

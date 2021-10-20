@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use Illuminate\Support\Str;
-
-
-
-
 class EventController extends Controller
 {
+    private $event;
+
+    public function __construct(Event $event)
+    {
+        $this->event = $event;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +23,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::paginate(10);
+        $events = $this->event->paginate(10);
 
         return view('admin.events.index')->with('events', $events) ;
     }
@@ -47,7 +50,7 @@ class EventController extends Controller
         $event = $request->all();
         $event['slug'] = Str::slug($event['title']);
 
-        Event::create($event);
+        $this->event->create($event);
 
         return redirect()->to(route('admin.events.index'));
     }
@@ -58,9 +61,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($event)
     {
-        //
+        return 'Evento' . $event;
     }
 
     /**
@@ -71,7 +74,7 @@ class EventController extends Controller
      */
     public function edit($event)
     {
-        $event = Event::findOrFail($event);
+        $event = $this->event->findOrFail($event);
 
         return view('admin.events.edit')->with('event', $event);
     }
@@ -86,7 +89,7 @@ class EventController extends Controller
     public function update(EventRequest $request, $event)
     {
 
-        $event = \App\Models\Event::findOrFail($event);
+        $event = $this->event->findOrFail($event);
         $event->update($request->all());
 
         return redirect()->back();
@@ -100,7 +103,7 @@ class EventController extends Controller
      */
     public function destroy($event)
     {
-        $event = \App\Models\Event::findOrFail($event);
+        $event = $this->event->findOrFail($event);
         $event->delete();
 
         return redirect()->to(route('admin.events.index'));
