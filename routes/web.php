@@ -21,7 +21,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('eventos/{slug}', [HomeController::class, 'show'])->name('events.single');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('events', EventController::class);
     Route::resource('events.photos', EventPhotoController::class);
 
