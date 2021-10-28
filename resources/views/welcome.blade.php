@@ -28,6 +28,8 @@
 
                         <p class="card-text">{{$event->description}}</p>
 
+                        <p>Evento organizado por <a href=""> {{ $event->owner->name }}</a></p>
+
                         <a href="{{ route('events.single', ['slug' => $event->slug] )}}" class="btn btn-default">Ver evento</a>
 
                     </div>
