@@ -25,11 +25,15 @@ class Event extends Model
     }
 
     //Mutators
-    public function setSlugAttribute($value){
+    public function setTitleAttribute($value){
 
         $this->attributes['title'] = $value;
 
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function setStartEventAttribute($value){
+        $this->attributes['start_event'] = (\DateTime::createFromFormat('d/m/Y H:i', $value))->format('Y-m-d H:i');
     }
 
 
