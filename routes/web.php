@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('eventos/{slug}', [HomeController::class, 'show'])->name('events.single');
 
@@ -31,4 +31,3 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

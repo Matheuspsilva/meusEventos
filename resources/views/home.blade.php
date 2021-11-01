@@ -1,23 +1,57 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('title') Eventos @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="row">
+    <div class="col-md-12">
+        <h2>Eventos</h2>
+        <hr>
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+
+<div class="row mb-4">
+
+        @forelse ( $events as $event )
+
+            <div class="col-md-4">
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" alt="" class="card-img-top">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{$event->title}}</h5>
+
+                        <strong>Acontece em: {{$event->start_event->format('d/m/Y H:i:s')}}</strong>
+
+                        <p class="card-text">{{$event->description}}</p>
+
+                        <p>Evento organizado por <a href=""> {{ $event->owner->name }}</a></p>
+
+                        <a href="{{ route('events.single', ['slug' => $event->slug] )}}" class="btn btn-default">Ver evento</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            @if (($loop->iteration % 3) == 0) </div> <div class="row mb-4"> @endif
+        @empty
+
+            <div class="col-md-12">
+                <div class="alert alert-warning">Nenhum evento encontrado</div>
+            </div>
+
+        @endforelse
+
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {{ $events->links() }}
+    </div>
+</div>
+
 @endsection

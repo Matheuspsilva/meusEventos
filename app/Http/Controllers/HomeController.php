@@ -7,15 +7,21 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $event;
+
+    public function __construct(Event $event){
+        $this->event = $event;
+    }
+
     public function index(){
 
-        $events = Event::all();
-        return view('welcome')->with('events', $events );
+        $events = $this->event->orderBy('start_event', 'DESC')->paginate(15);
+        return view('home')->with('events', $events );
     }
 
     public function show($slug){
 
-        $event = Event::where('slug', $slug)->first();
+        $event = $this->event->where('slug', $slug)->first();
         return view('event')->with('event', $event);
 
     }
