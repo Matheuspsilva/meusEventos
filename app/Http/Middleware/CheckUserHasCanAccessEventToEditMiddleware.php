@@ -19,7 +19,7 @@ class CheckUserHasCanAccessEventToEditMiddleware
     {
         $event = Event::find($request->route()->parameter('event'));
 
-        dd($event);
+        // dd($event);
 
         if(!auth()->user()->events->contains($event)){
             abort(403);

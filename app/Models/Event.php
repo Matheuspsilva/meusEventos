@@ -64,6 +64,10 @@ class Event extends Model
             return $queryBuilder->where('title', 'LIKE', '%' . $search . '%');
         });
 
+        // $events->whereRaw('DATE(start_event) >= DATE(NOW())');
+
+        $events->whereDate('start_event', '>=', now());
+
         return $events;
 
     }
