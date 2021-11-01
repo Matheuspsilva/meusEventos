@@ -50,4 +50,22 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+    *  Methods
+    */
+
+    public function getEventsHome($byCategory = null)
+    {
+        $events = $byCategory
+            ? $byCategory
+            : $this->orderBy('start_event', 'DESC');
+
+        $events->when($search = request()->query('search'), function ($queryBuilder) use($search){
+            return $queryBuilder->where('title', 'LIKE', '%' . $search . '%');
+        });
+
+        return $events;
+
+    }
+
 }
