@@ -15,7 +15,19 @@ class HomeController extends Controller
 
     public function index(){
 
-        $events = $this->event->orderBy('start_event', 'DESC')->paginate(15);
+        $events = $this->event->orderBy('start_event', 'DESC');
+
+        // if($query = request()->query('search')){
+        //     $events->where('title', 'LIKE', '%' . $query . '%');
+        // }
+
+        // Laravel queryBuilder
+        $events->when($search = request()->query('search'), function ($queryBuilder) use($search){
+            return $queryBuilder->where('title', 'LIKE', '%' . $search . '%');
+        });
+
+        $events = $events->paginate(15);
+
         return view('home')->with('events', $events );
     }
 
