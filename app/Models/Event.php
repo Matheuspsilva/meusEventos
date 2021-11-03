@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event'];
+    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event', 'banner'];
 
     protected $dates = ['start_event'];
 
