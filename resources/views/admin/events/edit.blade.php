@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-12">
 
-            <form action="{{route('admin.events.update', ['event' => $event->id])}}" method="post">
+            <form action="{{route('admin.events.update', ['event' => $event->id])}}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
 
@@ -66,6 +66,35 @@
                         {{$message}}
                     </div>
                     @enderror
+
+                </div>
+
+                <div class="form-group my-5">
+                    <div class="row">
+                        <div class="col-12">
+                            Banner Evento
+                            <hr>
+                        </div>
+
+                        <div class="col-4">
+                            <img src=" {{ asset('storage/' . $event->banner)}}" alt="Banner do evento {{ $event->title }}" class="img-fluid">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="">Carregando banner pro evento</label>
+                            <input type="file" name="banner" class="form-control @error('banner') is-invalid @enderror">
+
+                            @error('banner')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-12">
+                            <hr>
+                        </div>
+                    </div>
 
                 </div>
 
