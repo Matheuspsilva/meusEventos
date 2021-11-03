@@ -50,7 +50,11 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
+        $banner = $request->file('banner');
+
         $event = $request->all();
+
+        $event['banner'] = $banner->store('banner', 'public');
 
         $event = $this->event->create($event);
         $event->owner()->associate(auth()->user());
