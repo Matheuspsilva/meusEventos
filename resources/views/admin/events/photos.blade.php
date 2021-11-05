@@ -10,6 +10,7 @@
                 <label for="photos">Enviar fotos do evento</label>
                 <input type="file" name="photos[]" class="form-control" multiple>
             </div>
+            @dump($event->photos)
 
             <button class="btn btn-lg btn-success" type="submit">Enviar fotos</button>
         </form>
