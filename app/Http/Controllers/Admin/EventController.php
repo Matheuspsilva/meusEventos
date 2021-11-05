@@ -81,9 +81,8 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($event)
+    public function edit(Event $event)
     {
-        $event = $this->event->findOrFail($event);
 
         return view('admin.events.edit')->with('event', $event);
     }
@@ -95,10 +94,8 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventRequest $request, $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $event = $this->event->findOrFail($event);
-
         $eventData = $request->all();
 
         if($banner = $request->file('banner')) {
@@ -120,11 +117,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($event)
+    public function destroy(Event $event)
     {
-        $event = $this->event->findOrFail($event);
         $event->delete();
-
         return redirect()->to(route('admin.events.index'));
     }
 }

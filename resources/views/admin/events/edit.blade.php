@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="col-4">
-                            <img src=" {{ asset('storage/' . $event->banner)}}" alt="Banner do evento {{ $event->title }}" class="img-fluid">
+                            <img src=" {{ $event->banner? asset('storage/' . $event->banner) : 'https://via.placeholder.com/225'}}" alt="Banner do evento {{ $event->title }}" class="img-fluid">
                         </div>
 
                         <div class="col-8">

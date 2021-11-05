@@ -30,7 +30,7 @@
 
                         <p>Evento organizado por <a href=""> {{ $event->owner->name }}</a></p>
 
-                        <a href="{{ route('events.single', ['slug' => $event->slug] )}}" class="btn btn-default">Ver evento</a>
+                        <a href="{{ route('events.single', ['event' => $event->slug] )}}" class="btn btn-default">Ver evento</a>
 
                     </div>
 

@@ -15,9 +15,6 @@ class Event extends Model
     protected $dates = ['start_event'];
 
     //Accessors
-    public function getTitleAttribute(){
-        return 'Evento: ' . $this->attributes['title'];
-    }
 
     public function getOwnerNameAttribute($key)
     {

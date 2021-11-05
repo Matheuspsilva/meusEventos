@@ -17,8 +17,6 @@
                 @enderror
 
             </div>
-            @dump($event->photos)
-
             <button class="btn btn-lg btn-success" type="submit">Enviar fotos</button>
         </form>
         <hr>
