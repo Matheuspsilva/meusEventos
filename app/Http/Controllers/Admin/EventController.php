@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\UploadTrait;
 
 class EventController extends Controller
 {
+    use UploadTrait;
+
     private $event;
 
     public function __construct(Event $event)
@@ -54,7 +57,7 @@ class EventController extends Controller
         $event = $request->all();
 
         if($banner = $request->file('banner')) {
-            $event['banner'] = $banner->store('banner', 'public');
+            $event['banner'] = $this->upload($banner,'events/banner');
         }
 
         $event = $this->event->create($event);
@@ -103,7 +106,7 @@ class EventController extends Controller
                 Storage::disk('public')->delete($event->banner);
             }
 
-            $eventData['banner'] = $banner->store('banner', 'public');
+            $eventData['banner'] =  $this->upload($banner,'events/banner');
         }
 
         $event->update($eventData);

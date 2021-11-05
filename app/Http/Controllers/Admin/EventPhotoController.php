@@ -7,9 +7,11 @@ use App\Http\Requests\EventPhotoRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\UploadTrait;
 
 class EventPhotoController extends Controller
 {
+    use UploadTrait;
     /**
      * Display a listing of the resource.
      *
@@ -38,14 +40,8 @@ class EventPhotoController extends Controller
      */
     public function store(EventPhotoRequest $request,Event $event)
     {
-        $photos = $request->file('photos');
-
-        $uploadedPhotos = [];
-
         //Iterar fotos e realizar upload
-        foreach ($photos as $photo) {
-            $uploadedPhotos[] = ['photo' => $photo->store('events/photos', 'public')];
-        }
+        $uploadedPhotos = $this->multipleFilesUpload($request->file('photos'), 'event/photos', 'photo');
 
         //Salvar referências para evento
         $event->photos()->createMany($uploadedPhotos);
