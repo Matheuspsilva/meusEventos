@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventPhotoRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -31,10 +32,10 @@ class EventPhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EventPhotoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Event $event)
+    public function store(EventPhotoRequest $request,Event $event)
     {
         $photos = $request->file('photos');
 
