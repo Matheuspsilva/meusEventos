@@ -12,9 +12,9 @@ class EventPhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($event)
     {
-        //
+        return view('admin.events.photos', compact('event'));
     }
 
     /**
@@ -35,7 +35,7 @@ class EventPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->file('photos'));
     }
 
     /**

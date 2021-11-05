@@ -32,7 +32,10 @@
                     <td>
                         <div class="col-12 d-flex">
 
-                            <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('admin.events.photos.index', $event->id) }}" class="btn btn-primary">Fotos</a>
+
+                            <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning ml-2">Editar</a>
+
                             <form action="{{ route('admin.events.destroy', $event->id)}}" method="post">
                                 @csrf
                                 @method("DELETE")
