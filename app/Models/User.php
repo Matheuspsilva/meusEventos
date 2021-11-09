@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function events(){
         return $this->hasMany(Event::class, 'owner_id');
     }
+
+    public function subscriptions(){
+        return $this->belongsToMany(Event::class);
+    }
 }

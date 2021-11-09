@@ -12,6 +12,13 @@ use App\Traits\UploadTrait;
 class EventPhotoController extends Controller
 {
     use UploadTrait;
+
+    public function __construct()
+    {
+        $this->middleware('user.can.edit.event');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
