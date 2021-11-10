@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->hasMany(Event::class, 'owner_id');
     }
 
-    public function subscriptions(){
-        return $this->belongsToMany(Event::class);
+    public function tickets(){
+        return $this->belongsToMany(Event::class)->withPivot('reference', 'status');
     }
 }

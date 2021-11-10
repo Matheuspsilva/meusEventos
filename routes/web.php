@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\EventPhotoController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 });
 
+//Enrollment
+
+Route::prefix('/enrollment')->name('enrollment.')->group(function(){
+    Route::get('/start/{event:slug}', [EnrollmentController::class, 'start'])->name('start');
+    Route::get('/confirm', [EnrollmentController::class, 'confirm'])->name('confirm')->middleware('auth');
+    Route::get('/process', [EnrollmentController::class, 'process'])->name('process')->middleware('auth');
+
+
+
+});
 
 
 Auth::routes();
