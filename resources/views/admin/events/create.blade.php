@@ -88,6 +88,17 @@
 
             </div>
 
+            <div class="form-group">
+                <label>Quais Categorias o Evento Pertence</label>
+
+                <select class="form-control" multiple name="categories[]">
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
             <button type="submit" class="btn btn-lg btn-success">Criar Evento</button>
 
         </form>

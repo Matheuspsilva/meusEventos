@@ -94,6 +94,22 @@
                         <div class="col-12">
                             <hr>
                         </div>
+
+                        <div class="form-group">
+                            <label>Quais Categorias o Evento Pertence</label>
+
+                            <select class="form-control" multiple name="categories[]">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}"
+                                        @if($event->categories->contains($category))
+                                            selected
+                                        @endif
+                                    >{{$category->name}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
                     </div>
 
                 </div>
