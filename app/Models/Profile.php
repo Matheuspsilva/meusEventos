@@ -15,4 +15,11 @@ class Profile extends Model
     public function user(){
         return $this->belongsTo(User::class) ;
     }
+
+    public function getSocialNetworksAttribute(){
+
+        $socialNetworksArray = explode(',', $this->attributes['social_networks']);
+
+        return is_array($this->attributes['social_networks']) ? $this->attributes['social_networks'] : $socialNetworksArray;
+    }
 }

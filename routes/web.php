@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\EventPhotoController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
 use App\Models\Event;
@@ -27,6 +28,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('events.photos', EventPhotoController::class)
         ->only(['index', 'store', 'destroy']);
 
+    Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
 });
 
 //Enrollment
@@ -35,8 +39,6 @@ Route::prefix('/enrollment')->name('enrollment.')->group(function(){
     Route::get('/start/{event:slug}', [EnrollmentController::class, 'start'])->name('start');
     Route::get('/confirm', [EnrollmentController::class, 'confirm'])->name('confirm')->middleware('auth');
     Route::get('/process', [EnrollmentController::class, 'process'])->name('process')->middleware('auth');
-
-
 
 });
 

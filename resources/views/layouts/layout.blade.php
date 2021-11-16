@@ -36,6 +36,19 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar Evento" aria-label="Search" name="search" value="{{ request()->query('search') }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
           </form>
+
+          <ul class="navbar-nav">
+            @auth
+                <li class="nav-item">
+                    <a href="{{route('admin.events.index')}}" class="nav-link">Meu Painel</a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a href="{{route('login')}}" class="nav-link">Acessar Conta</a>
+                </li>
+            @endauth
+        </ul>
+
         </div>
     </nav>
 
