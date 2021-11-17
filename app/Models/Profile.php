@@ -18,8 +18,8 @@ class Profile extends Model
 
     public function getSocialNetworksAttribute(){
 
-        $socialNetworksArray = explode(',', $this->attributes['social_networks']);
+        return $this->attributes['social_networks'] ? json_decode($this->attributes['social_networks'], true) : [];
 
-        return is_array($this->attributes['social_networks']) ? $this->attributes['social_networks'] : $socialNetworksArray;
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -14,10 +15,10 @@ class ProfileController extends Controller
         return view('admin.profile', compact('user'));
 
     }
-    public function update(){
+    public function update(ProfileRequest $request){
 
-        $userData = request()->get('user');
-        $profile = request()->get('profile');
+        $userData = $request->get('user');
+        $profile = $request->get('profile');
 
         if($userData['password']){
             $userData['password'] = bcrypt($userData['password']);
