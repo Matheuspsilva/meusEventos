@@ -71,6 +71,9 @@ class EventController extends Controller
             $event->categories()->sync($categories);
         }
 
+        \App\Services\MessageService::addFlash('success', 'Evento criado com sucesso');
+
+
         return redirect()->to(route('admin.events.index'));
     }
 
@@ -123,6 +126,9 @@ class EventController extends Controller
             $event->categories()->sync($categories);
         }
 
+        \App\Services\MessageService::addFlash('success', 'Evento atualizado com sucesso');
+
+
         return redirect()->back();
     }
 
@@ -135,6 +141,9 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
+
+        \App\Services\MessageService::addFlash('success', 'Evento removido com sucesso');
+
         return redirect()->to(route('admin.events.index'));
     }
 }

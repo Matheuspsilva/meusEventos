@@ -3,7 +3,6 @@
 @section('title') Eventos @endsection
 
 @section('content')
-
 <div class="row">
     <div class="col-md-12">
         <h2>Eventos</h2>

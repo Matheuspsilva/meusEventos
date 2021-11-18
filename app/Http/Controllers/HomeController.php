@@ -14,7 +14,8 @@ class HomeController extends Controller
         $this->event = $event;
     }
 
-    public function index(){
+    public function index()
+    {
 
         $byCategory = request()->has('category')
             ? Category::whereSlug(request()->get('category'))->first()->events()
@@ -25,8 +26,8 @@ class HomeController extends Controller
         return view('home', compact('events'));
     }
 
-    public function show(Event $event){
-
+    public function show(Event $event)
+    {
         return view('event')->with('event', $event);
 
     }
